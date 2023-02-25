@@ -67,7 +67,7 @@
       let html="";
       [1,2,3].forEach(e=>{
         let vd=vids[matchid];
-        if(!vd) vid = vids[matchid-lastid]
+        if(!vd) vd = vids[matchid-lastid]
         html+= `<h1 style="display: flex;font-family: monospace; font-weight: bold;">Video #${e}</h1>
      <div style="display: flex;">
          <video src="https://drive.google.com/uc?export=download&id=${vd.url.split("=")[1]}"
