@@ -24,7 +24,8 @@
         width: 100%;
     }
 
-    input[type=email] {
+    input[type=email],
+    select {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
@@ -45,18 +46,18 @@
         .card {
             min-width: 90vw;
         }
+
         video {
-        max-width: 100vw;
-        min-width: 99vw;
-        width: 99vw;
-    }
+            max-width: 100vw;
+            min-width: 99vw;
+            width: 99vw;
+        }
     }
 </style>
 
 
 <div class="rw" style="justify-content: center;">
     <div id="bdy">
-
     </div>
 </div>
 
@@ -66,29 +67,35 @@
                         <input type="email" id="email" placeholder="Please Enter your Email">
                         <button onclick="showVideo()">Submit</button>
                     </div>`
-
+    var userVids = [];
     function showVideo() {
         let email = document.getElementById("email").value?.trim()?.toLowerCase();
-        let vids = JSON.parse(atob("W3sidXJsIjoiaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MWdkVE1RbDFGVm1tcWR6bnZHSjFHekxKYmtneE5uaFc5IiwiZW1haWwiOiJhbnVqbTQzNzJAZ21haWwuY29tIiwiaWQiOjF9LHsidXJsIjoiaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MVNNcFVjWjVuQkZlRUtodDNfc3g0eWRndTZyWHR2VEZKIiwiZW1haWwiOiJzb3J0ZW5pY2tAZ21haWwuY29tIiwiaWQiOjJ9LHsidXJsIjoiaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MXYwMU9IekV1UnlkTk5YdXA1cGd4TWt3bXVtTmx5bVhGIiwiZW1haWwiOiJyaXNoYWJocmFqNDc3MjZAZ21haWwuY29tIiwiaWQiOjN9LHsidXJsIjoiaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MXVzQzhzZHdJNFZ5MXkxZXktYnkzLUl1Q3VubF94eHhPIiwiZW1haWwiOiJwYWRobWluaWFrdWxhQGdtYWlsLmNvbSIsImlkIjo0fSx7InVybCI6Imh0dHBzOi8vZHJpdmUuZ29vZ2xlLmNvbS9vcGVuP2lkPTFaVVNiZ2JkcFVuTU5sYlE1RlJqbTFVNlQyWnk1cmxQUSIsImVtYWlsIjoiYWthc2hjaGFuZHJha2hhbjExQGdtYWlsLmNvbSIsImlkIjo1fSx7InVybCI6Imh0dHBzOi8vZHJpdmUuZ29vZ2xlLmNvbS9vcGVuP2lkPTFYc2Y1Szg1RWJQeUlqTEQxNzZmam8xYmt3U1lfWmFiNiIsImVtYWlsIjoidmFuaTEwMjIwMDBAZ21haWwuY29tIiwiaWQiOjZ9LHsidXJsIjoiaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MW80bDlvZW1YMXEwbW5yVV9jM2ZjdWZaVGhFSnRzSFBjIiwiZW1haWwiOiJrYXJ0aGlja3JhajIwMDFAZ21haWwuY29tIiwiaWQiOjd9LHsidXJsIjoiaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MUVWMDdvajRyQ2J3aFNycEEtcFJDUWhjWUlxeENZOWg2IiwiZW1haWwiOiJlci5tYWhhamFuN0BnbWFpbC5jb20iLCJpZCI6OH0seyJ1cmwiOiJodHRwczovL2RyaXZlLmdvb2dsZS5jb20vb3Blbj9pZD0xa2pDODZCSkFJYlhoaUtwR1RuVTJLdWhLZzM0WjVvVk4iLCJlbWFpbCI6Im1lc2hhZGl2eWFAZ21haWwuY29tIiwiaWQiOjl9LHsidXJsIjoiaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MVJ3emFDVmFmR1k0N1JlXzRReF9PVzcwbkhhRFZ0dVFZIiwiZW1haWwiOiJkaGFyYW5pZ2F2YXJhNzc3QGdtYWlsLmNvbSIsImlkIjoxMH0seyJ1cmwiOiJodHRwczovL2RyaXZlLmdvb2dsZS5jb20vb3Blbj9pZD0xRC1mbXRQRFBmWUtOUGs1UkpZbVJGU3oxRnd6aEJxZHQiLCJlbWFpbCI6ImtyaXNobmFnYW5lc2h0YWxsdXJpQGdtYWlsLmNvbSIsImlkIjoxMX0seyJ1cmwiOiJodHRwczovL2RyaXZlLmdvb2dsZS5jb20vb3Blbj9pZD0xeGF3bS1RVDdUNEc3RjBRaThldDR4aGxQN0QxVEtib1YiLCJlbWFpbCI6InBrc2FnYXI1OTVAZ21haWwuY29tIiwiaWQiOjEyfSx7InVybCI6Imh0dHBzOi8vZHJpdmUuZ29vZ2xlLmNvbS9vcGVuP2lkPTF0SklxQW1xU3VCb2VYdGhUazhIaEo4TUtaWXRnUXhvRCIsImVtYWlsIjoiYy50ZW5ueXByaXlhNzlAZ21haWwuY29tIiwiaWQiOjEzfSx7InVybCI6Imh0dHBzOi8vZHJpdmUuZ29vZ2xlLmNvbS9vcGVuP2lkPTFuM2hNY1psa1NPQXp1eFo5VW5rQlR1NzQyMkhGSWViWCIsImVtYWlsIjoia3Vsc3VtYXJzaGkxMjNAZ21haWwuY29tIiwiaWQiOjE0fSx7InVybCI6Imh0dHBzOi8vZHJpdmUuZ29vZ2xlLmNvbS9vcGVuP2lkPTFkV091ampOQ3V6VnJvM05wYzVRU19nZjBWTlFnUnZkaSIsImVtYWlsIjoiYXNpZmFsaWRoYWxheWF0QGdtYWlsLmNvbSIsImlkIjoxNX0seyJ1cmwiOiJodHRwczovL2RyaXZlLmdvb2dsZS5jb20vb3Blbj9pZD0xVUtVYjRuNzEzZ3dGcUlzQzA4LWFQbFhjb3J0RVl2VUEiLCJlbWFpbCI6Imthbm5hdWppeWFqaXRlbmRyYTcwQGdtYWlsLmNvbSIsImlkIjoxNn0seyJ1cmwiOiJodHRwczovL2RyaXZlLmdvb2dsZS5jb20vb3Blbj9pZD0xaFIyeTFhdnBzNDVYWkJCZjRQWmMzdWoza3FsdVR5MmciLCJlbWFpbCI6InZlZWtzaGl0aHRob3JhbUBnbWFpbC5jb20iLCJpZCI6MTd9LHsidXJsIjoiaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MVBTWExUb2lQZVE4MFd0N1VsU2ZGWlg0TWpHalFDM2JJIiwiZW1haWwiOiJhc2FkdmljZTc4NkBnbWFpbC5jb20iLCJpZCI6MTh9LHsidXJsIjoiaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MUt3aXNJaWxsbGtpa0ZyV1Y3VnI4WjdOVWxYRWxEWDRRIiwiZW1haWwiOiJzaGFoYW5hc2ZhdGhpbWEuckBnbWFpbC5jb20iLCJpZCI6MTl9LHsidXJsIjoiaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MThKVU5EU25UbVBZNUVQYTlqSjhQT2VPSk43WkN2Wk5oIiwiZW1haWwiOiJpYWxhbTg3NUBnbWFpbC5jb20iLCJpZCI6MjB9LHsidXJsIjoiaHR0cHM6Ly9kcml2ZS5nb29nbGUuY29tL29wZW4/aWQ9MXVHcUJ4N0NIT0syNVJDdGdIaWlvSkpnc2NmOTJCNkw1IiwiZW1haWwiOiJjaGFuaWt5YW1hZGh1LmtpcmFuQGdtYWlsLmNvbSIsImlkIjoyMX0seyJ1cmwiOiJodHRwczovL2RyaXZlLmdvb2dsZS5jb20vb3Blbj9pZD0xX2tjVlR2WUVUcjVyZ2Q3M3U3bVllUkNBU1VmanBfMWIiLCJlbWFpbCI6InNoYWhhbmFzZmF0aGltYS5yQGdtYWlsLmNvbSIsImlkIjoyMn0seyJ1cmwiOiJodHRwczovL2RyaXZlLmdvb2dsZS5jb20vZmlsZS9kLzExTmNPT2hWeG1feGxhOGE3WTk4VEZSd2tlaGQ3UXhiby92aWV3IiwiZW1haWwiOiJiYXN1LmRlYmFsaW5hMTBAZ21haWwuY29tIiwiaWQiOjIzfSx7InVybCI6Imh0dHBzOi8vZHJpdmUuZ29vZ2xlLmNvbS9vcGVuP2lkPTEwYjItNW5sd1NjS3ZlRVNaVXFPTzFERC1YNUJsTjJ5NiIsImVtYWlsIjoicHJhc2hhbnRobW9yYTg2QGdtYWlsLmNvbSIsImlkIjoyNH1d"))
-        let userVids = [];
+        let vids = JSON.parse(atob("W3sidXJsIjoiMWdkVE1RbDFGVm1tcWR6bnZHSjFHekxKYmtneE5uaFc5IiwiZW1haWwiOiJhbnVqbTQzNzJAZ21haWwuY29tIiwiaWQiOjF9LHsidXJsIjoiMVNNcFVjWjVuQkZlRUtodDNfc3g0eWRndTZyWHR2VEZKIiwiZW1haWwiOiJzb3J0ZW5pY2tAZ21haWwuY29tIiwiaWQiOjJ9LHsidXJsIjoiMXYwMU9IekV1UnlkTk5YdXA1cGd4TWt3bXVtTmx5bVhGIiwiZW1haWwiOiJyaXNoYWJocmFqNDc3MjZAZ21haWwuY29tIiwiaWQiOjN9LHsidXJsIjoiMXVzQzhzZHdJNFZ5MXkxZXktYnkzLUl1Q3VubF94eHhPIiwiZW1haWwiOiJwYWRobWluaWFrdWxhQGdtYWlsLmNvbSIsImlkIjo0fSx7InVybCI6IjFaVVNiZ2JkcFVuTU5sYlE1RlJqbTFVNlQyWnk1cmxQUSIsImVtYWlsIjoiYWthc2hjaGFuZHJha2hhbjExQGdtYWlsLmNvbSIsImlkIjo1fSx7InVybCI6IjFYc2Y1Szg1RWJQeUlqTEQxNzZmam8xYmt3U1lfWmFiNiIsImVtYWlsIjoidmFuaTEwMjIwMDBAZ21haWwuY29tIiwiaWQiOjZ9LHsidXJsIjoiMW80bDlvZW1YMXEwbW5yVV9jM2ZjdWZaVGhFSnRzSFBjIiwiZW1haWwiOiJrYXJ0aGlja3JhajIwMDFAZ21haWwuY29tIiwiaWQiOjd9LHsidXJsIjoiMUVWMDdvajRyQ2J3aFNycEEtcFJDUWhjWUlxeENZOWg2IiwiZW1haWwiOiJlci5tYWhhamFuN0BnbWFpbC5jb20iLCJpZCI6OH0seyJ1cmwiOiIxa2pDODZCSkFJYlhoaUtwR1RuVTJLdWhLZzM0WjVvVk4iLCJlbWFpbCI6Im1lc2hhZGl2eWFAZ21haWwuY29tIiwiaWQiOjl9LHsidXJsIjoiMVJ3emFDVmFmR1k0N1JlXzRReF9PVzcwbkhhRFZ0dVFZIiwiZW1haWwiOiJkaGFyYW5pZ2F2YXJhNzc3QGdtYWlsLmNvbSIsImlkIjoxMH0seyJ1cmwiOiIxRC1mbXRQRFBmWUtOUGs1UkpZbVJGU3oxRnd6aEJxZHQiLCJlbWFpbCI6ImtyaXNobmFnYW5lc2h0YWxsdXJpQGdtYWlsLmNvbSIsImlkIjoxMX0seyJ1cmwiOiIxeGF3bS1RVDdUNEc3RjBRaThldDR4aGxQN0QxVEtib1YiLCJlbWFpbCI6InBrc2FnYXI1OTVAZ21haWwuY29tIiwiaWQiOjEyfSx7InVybCI6IjF0SklxQW1xU3VCb2VYdGhUazhIaEo4TUtaWXRnUXhvRCIsImVtYWlsIjoiYy50ZW5ueXByaXlhNzlAZ21haWwuY29tIiwiaWQiOjEzfSx7InVybCI6IjFuM2hNY1psa1NPQXp1eFo5VW5rQlR1NzQyMkhGSWViWCIsImVtYWlsIjoia3Vsc3VtYXJzaGkxMjNAZ21haWwuY29tIiwiaWQiOjE0fSx7InVybCI6IjFkV091ampOQ3V6VnJvM05wYzVRU19nZjBWTlFnUnZkaSIsImVtYWlsIjoiYXNpZmFsaWRoYWxheWF0QGdtYWlsLmNvbSIsImlkIjoxNX0seyJ1cmwiOiIxVUtVYjRuNzEzZ3dGcUlzQzA4LWFQbFhjb3J0RVl2VUEiLCJlbWFpbCI6Imthbm5hdWppeWFqaXRlbmRyYTcwQGdtYWlsLmNvbSIsImlkIjoxNn0seyJ1cmwiOiIxaFIyeTFhdnBzNDVYWkJCZjRQWmMzdWoza3FsdVR5MmciLCJlbWFpbCI6InZlZWtzaGl0aHRob3JhbUBnbWFpbC5jb20iLCJpZCI6MTd9LHsidXJsIjoiMVBTWExUb2lQZVE4MFd0N1VsU2ZGWlg0TWpHalFDM2JJIiwiZW1haWwiOiJhc2FkdmljZTc4NkBnbWFpbC5jb20iLCJpZCI6MTh9LHsidXJsIjoiMUt3aXNJaWxsbGtpa0ZyV1Y3VnI4WjdOVWxYRWxEWDRRIiwiZW1haWwiOiJzaGFoYW5hc2ZhdGhpbWEuckBnbWFpbC5jb20iLCJpZCI6MTl9LHsidXJsIjoiMThKVU5EU25UbVBZNUVQYTlqSjhQT2VPSk43WkN2Wk5oIiwiZW1haWwiOiJpYWxhbTg3NUBnbWFpbC5jb20iLCJpZCI6MjB9LHsidXJsIjoiMXVHcUJ4N0NIT0syNVJDdGdIaWlvSkpnc2NmOTJCNkw1IiwiZW1haWwiOiJjaGFuaWt5YW1hZGh1LmtpcmFuQGdtYWlsLmNvbSIsImlkIjoyMX0seyJ1cmwiOiIxX2tjVlR2WUVUcjVyZ2Q3M3U3bVllUkNBU1VmanBfMWIiLCJlbWFpbCI6InNoYWhhbmFzZmF0aGltYS5yQGdtYWlsLmNvbSIsImlkIjoyMn0seyJ1cmwiOiIxdjItTjhMSjI2enFpMXhYdVZSSS15SHkyN2N6LV9YNVYiLCJlbWFpbCI6ImZhcnNhbmFqYXNtaWluQGdtYWlsLmNvbSIsImlkIjoyM30seyJ1cmwiOiIxb3pxaXQzUHl1SXVPbWdOOXBEdDd1VVdja3ZRSFRJOEgiLCJlbWFpbCI6ImFuaWxrdW1hcnIwODVAZ21haWwuY29tIiwiaWQiOjI0fSx7InVybCI6IjExTmNPT2hWeG1feGxhOGE3WTk4VEZSd2tlaGQ3UXhibyIsImVtYWlsIjoiYmFzdS5kZWJhbGluYTEwQGdtYWlsLmNvbSIsImlkIjoyNX0seyJ1cmwiOiIxMGIyLTVubHdTY0t2ZUVTWlVxT08xREQtWDVCbE4yeTYiLCJlbWFpbCI6InByYXNoYW50aG1vcmE4NkBnbWFpbC5jb20iLCJpZCI6MjZ9XQ=="))
         let matchid = vids.find(e => e.email == email)?.id;
         if (!matchid) {
             alert("Invalid email.");
             return;
         }
-        let lastid = vids.at(-1).id;
-        let html = "";
-        [1, 2, 3].forEach(e => {
-            let vd = vids[matchid];
-            if (!vd) vd = vids[matchid - lastid]
-            html += `<h1 style="display: flex;font-family: monospace; font-weight: bold;">Video #${e}</h1>
-     <div style="display: flex;">
-         <video src="https://drive.google.com/uc?export=download&id=${vd.url.split("=")[1]}"
-             controls type="video/mp4" onclick="this.play()"></video>
-     </div><hr>`
-            matchid++
-        })
-        bdy.innerHTML = html;
-
-    }   
+        userVids = vids.filter(x => x.id != matchid);
+        bdy.innerHTML = `<div style="display: flex; justify-content: space-between; align-items: center;">
+            <div id="divvidid" style="font-family: monospace; font-weight: bold; width: 50%; font-size: 1.3rem;">Video Id #${userVids[0].id}</div>
+            <select id="vidid" onchange="change(this)" style="width: 50%;"></select>
+        </div>
+        <div style="display: flex;">
+            <video id="vid" src="https://drive.google.com/uc?export=download&id=${userVids[0].url}" controls type="video/mp4" onclick="this.play()"></video>
+        </div>`;
+        let vidid = document.getElementById("vidid");
+        userVids.forEach((x, i) => {
+            let option = document.createElement('option');
+            option.text = "Video Id #" + x.id
+            option.value = x.id;
+            if(i==0) option.selected=true;
+            vidid.add(option);
+        });
+    } 
+    function change(dd){
+        let next=userVids.find(x=>x.id==dd.value);
+        document.getElementById("vid").src=`https://drive.google.com/uc?export=download&id=${next.url}`
+        document.getElementById("divvidid").innerText="Video Id #"+next.id
+    }  
 </script>
